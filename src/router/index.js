@@ -17,6 +17,16 @@ const router = createRouter({
       component: () => import('@/views/SignInView.vue')
     },
     {
+      path: '/signup',
+      name: 'signup',
+      component: () => import('@/views/SignUpView.vue')
+    },
+    {
+      path: '/welcome',
+      name: 'welcome',
+      component: () => import('@/views/WelcomeView.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('@/views/AboutView.vue')
@@ -31,11 +41,15 @@ router.beforeEach(async (to, from, next) => {
     await userStore.fetchUser()
   }
 
+  if (to.name === 'home' || to.name === 'signup') {
+    next()
+    return
+  }
+
   if (userStore.user === null && to.name !== 'signin') {
     next({ name: 'signin' })
   } else {
     next()
   }
 })
-
 export default router
