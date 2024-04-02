@@ -13,13 +13,13 @@ const router = createRouter({
     },
     {
       path: '/signin',
-      name: 'signin',
+      name: 'signIn',
       component: () => import('@/views/SignInView.vue')
     },
     {
       path: '/signup',
-      name: 'signup',
-      component: () => import('@/views/SignUpView.vue')
+      name: 'signUp',
+      component: () => import('@/views/SignInView.vue')
     },
     {
       path: '/welcome',
@@ -30,6 +30,11 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: () => import('@/views/AboutView.vue')
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: () => import('@/views/DashboardView.vue')
     }
   ]
 })
@@ -41,13 +46,13 @@ router.beforeEach(async (to, from, next) => {
     await userStore.fetchUser()
   }
 
-  if (to.name === 'home' || to.name === 'signup') {
+  if (to.name === 'home' || to.name === 'signUp') {
     next()
     return
   }
 
-  if (userStore.user === null && to.name !== 'signin') {
-    next({ name: 'signin' })
+  if (userStore.user === null && to.name !== 'signIn') {
+    next({ name: 'signIn' })
   } else {
     next()
   }
