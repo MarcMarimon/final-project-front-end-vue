@@ -1,13 +1,18 @@
 <script setup>
 import { computed } from 'vue'
 import { useUserStore } from '@/stores/userStore.js'
+import { useTasksStore } from '@/stores/tasksStore.js'
+import { useDashboardsStore } from '@/stores/dashboardsStore'
 
 const userStore = useUserStore()
-
+const tasksStore = useTasksStore()
+const dashboardsStore = useDashboardsStore()
 const isUserLoggedIn = computed(() => !!userStore.user)
 
 const signOut = () => {
   userStore.signOut()
+  tasksStore.clear()
+  dashboardsStore.clear()
 }
 </script>
 <template>

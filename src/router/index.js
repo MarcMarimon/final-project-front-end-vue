@@ -14,12 +14,12 @@ const router = createRouter({
     {
       path: '/signin',
       name: 'signIn',
-      component: () => import('@/views/SignInView.vue')
+      component: () => import('@/views/SignFormView.vue')
     },
     {
       path: '/signup',
       name: 'signUp',
-      component: () => import('@/views/SignInView.vue')
+      component: () => import('@/views/SignFormView.vue')
     },
     {
       path: '/welcome',
