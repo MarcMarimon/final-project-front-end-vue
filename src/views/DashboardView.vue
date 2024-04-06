@@ -3,8 +3,9 @@ import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useTasksStore } from '@/stores/tasksStore.js'
 import { useDashboardsStore } from '@/stores/dashboardsStore.js'
-import { TASK_STATUS } from '@/utils/enums.js'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const tasksStore = useTasksStore()
 const dashboardsStore = useDashboardsStore()
 const newTaskTitle = ref('')
@@ -27,8 +28,8 @@ const removeTask = async (taskId) => {
   await tasksStore.removeTask(taskId)
 }
 
-const updateTaskStatus = async (taskId, newStatus) => {
-  await tasksStore.updateTaskCompletionStatus(taskId, newStatus)
+const openEditView = (taskId) => {
+  router.push({ name: 'editTask', params: { taskId } })
 }
 onMounted(() => {
   tasksStore.fetchTasks()
@@ -46,18 +47,9 @@ onMounted(() => {
         <li v-for="task in tasksByDashboard(dashboard.id)" :key="task.id">
           <div>
             <span>{{ task.title }} </span>
-            <button @click="openEditView">Edit</button>
+            <button @click="openEditView(task.id)">Edit</button>
           </div>
-          <select
-            @change="updateTaskStatus(task.id, task.status)"
-            name="taskStatus"
-            id="taskStatus"
-            v-model="task.status"
-          >
-            <option v-for="status in TASK_STATUS" :key="status" :value="status">
-              {{ status }}
-            </option>
-          </select>
+          <span> {{ task.status }} </span>
           <button @click="removeTask(task.id)">Eliminar</button>
         </li>
       </ul>

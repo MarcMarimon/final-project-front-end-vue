@@ -36,20 +36,10 @@ export const deleteTask = async (taskId) => {
     }
 }
 
-export const updateTaskCompletion = async (taskId, newStatus) => {
+export const updateTask = async (taskId, task) => {
     const { error } = await supabase
         .from('tasks')
-        .update({ status: newStatus })
-        .eq('id', taskId)
-
-    if (error) {
-        throw new Error(error.message)
-    }
-}
-export const updateTaskTitle = async (taskId, newTitle) => {
-    const { error } = await supabase
-        .from('tasks')
-        .update({ title: newTitle })
+        .update(task)
         .eq('id', taskId)
 
     if (error) {

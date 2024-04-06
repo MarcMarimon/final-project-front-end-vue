@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { fetchAllTasks, createTask, deleteTask, updateTaskCompletion, updateTaskTitle } from '@/api/tasksApi'
+import { fetchAllTasks, createTask, deleteTask, updateTask } from '@/api/tasksApi'
 import { useUserStore } from '@/stores/userStore'
 
 export const useTasksStore = defineStore('tasks', () => {
@@ -39,23 +39,13 @@ export const useTasksStore = defineStore('tasks', () => {
         }
     }
 
-    const updateTaskCompletionStatus = async (taskId, newStatus) => {
+
+    const updateTaskById = async (taskId, newTask) => {
         try {
-            await updateTaskCompletion(taskId, newStatus)
+            await updateTask(taskId, newTask)
             const taskIndex = tasks.value.findIndex(task => task.id === taskId)
             if (taskIndex !== -1) {
-                tasks.value[taskIndex].status = newStatus
-            }
-        } catch (error) {
-            console.error(error)
-        }
-    }
-    const updateTaskName = async (taskId, newTitle) => {
-        try {
-            await updateTaskTitle(taskId, newTitle)
-            const taskIndex = tasks.value.findIndex(task => task.id === taskId)
-            if (taskIndex !== -1) {
-                tasks.value[taskIndex].tite = newTitle
+                tasks.value[taskIndex] = newTask
             }
         } catch (error) {
             console.error(error)
@@ -70,7 +60,6 @@ export const useTasksStore = defineStore('tasks', () => {
         clear,
         addTask,
         removeTask,
-        updateTaskCompletionStatus,
-        updateTaskName
+        updateTaskById
     }
 })
