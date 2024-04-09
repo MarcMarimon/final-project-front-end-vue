@@ -42,10 +42,10 @@ export const useTasksStore = defineStore('tasks', () => {
 
     const updateTaskById = async (taskId, newTask) => {
         try {
-            await updateTask(taskId, newTask)
-            const taskIndex = tasks.value.findIndex(task => task.id === taskId)
+            const updatedTask = await updateTask(taskId, newTask)
+            const taskIndex = tasks.value.findIndex(task => task.id === updatedTask.id)
             if (taskIndex !== -1) {
-                tasks.value[taskIndex] = newTask
+                tasks.value[taskIndex] = updatedTask
             }
         } catch (error) {
             console.error(error)

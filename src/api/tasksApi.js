@@ -37,12 +37,13 @@ export const deleteTask = async (taskId) => {
 }
 
 export const updateTask = async (taskId, task) => {
-    const { error } = await supabase
+    const { error, data } = await supabase
         .from('tasks')
         .update(task)
         .eq('id', taskId)
-
+        .select();
     if (error) {
         throw new Error(error.message)
     }
+    return data[0]
 }
