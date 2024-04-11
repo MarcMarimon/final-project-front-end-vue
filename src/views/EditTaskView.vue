@@ -14,7 +14,7 @@ const saveChanges = async () => {
   const taskId = router.currentRoute.value.params.taskId
   const newTask = { status: editedTaskStatus.value, title: editedTaskTitle.value }
   await tasksStore.updateTaskById(taskId, newTask)
-  router.push({ name: 'dashboard' })
+  router.go(-1)
 }
 </script>
 

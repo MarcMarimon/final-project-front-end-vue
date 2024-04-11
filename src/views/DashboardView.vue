@@ -1,28 +1,28 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useTasksStore } from '@/stores/tasksStore.js'
+/*import { useTasksStore } from '@/stores/tasksStore.js'*/
 import { useDashboardsStore } from '@/stores/dashboardsStore.js'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const tasksStore = useTasksStore()
+/*const tasksStore = useTasksStore()*/
 const dashboardsStore = useDashboardsStore()
-const newTaskTitle = ref('')
-const newTaskDashboardId = ref(0)
+/*const newTaskTitle = ref('')*/
+/*const newTaskDashboardId = ref(0)*/
 const newDashboardName = ref('')
 const editedDashboardName = ref('')
 const isEditing = ref(-1)
-const { tasks } = storeToRefs(tasksStore)
+/*const { tasks } = storeToRefs(tasksStore)*/
 const { dashboards } = storeToRefs(dashboardsStore)
 
-const addNewTask = async () => {
+/*const addNewTask = async () => {
   if (newTaskTitle.value.trim() !== '') {
     await tasksStore.addTask(newTaskTitle.value, newTaskDashboardId.value)
     newTaskTitle.value = ''
     newTaskDashboardId.value = 0
   }
-}
+}*/
 const addNewDashboard = async () => {
   if (newDashboardName.value.trim() !== '') {
     await dashboardsStore.addDashboard(newDashboardName.value)
@@ -30,12 +30,15 @@ const addNewDashboard = async () => {
   }
 }
 
-const tasksByDashboard = (dashboardId) => {
+/*const tasksByDashboard = (dashboardId) => {
   return tasks.value.filter((task) => task.dashboard_id === dashboardId)
 }
 const removeTask = async (taskId) => {
   await tasksStore.removeTask(taskId)
 }
+const openEditView = (taskId) => {
+  router.push({ name: 'editTask', params: { taskId } })
+}*/
 const deleteDashboard = async (dashboardId) => {
   await dashboardsStore.removeDashboard(dashboardId)
 }
@@ -54,16 +57,47 @@ const saveDashboardName = async (dashboard) => {
 const cancelEdit = () => {
   isEditing.value = -1
 }
-const openEditView = (taskId) => {
-  router.push({ name: 'editTask', params: { taskId } })
+const openDashboardTasks = (dashboardId) => {
+  router.push({ name: 'DashboardTasks', params: { dashboardId } })
 }
 onMounted(() => {
-  tasksStore.fetchTasks()
+  /*tasksStore.fetchTasks()*/
   dashboardsStore.fetchDashboards()
 })
 </script>
 <template>
   <div>
+    <h2>Dashboard</h2>
+
+    <div
+      v-for="dashboard in dashboards"
+      :key="dashboard.id"
+      @click="openDashboardTasks(dashboard.id)"
+    >
+      <div class="dashboard-card">
+        <template v-if="isEditing === dashboard.id">
+          <input
+            type="text"
+            v-model="editedDashboardName"
+            placeholder="Nuevo nombre del Dashboard"
+          />
+          <button @click="saveDashboardName(dashboard)">Guardar</button>
+          <button @click="cancelEdit()">Cancelar</button>
+        </template>
+        <template v-else>
+          <h3>{{ dashboard.name }}</h3>
+          <button @click="startEdit(dashboard)">Editar</button>
+        </template>
+        <button @click="deleteDashboard(dashboard.id)">Eliminar</button>
+      </div>
+    </div>
+
+    <form @submit.prevent="addNewDashboard()">
+      <input type="text" v-model="newDashboardName" placeholder="Nuevo dashboard..." />
+      <button type="submit">Agregar Dashboard</button>
+    </form>
+  </div>
+  <!--<div>
     <h2>Dashboard</h2>
 
     <div v-for="dashboard in dashboards" :key="dashboard.id">
@@ -107,6 +141,16 @@ onMounted(() => {
       <input type="text" v-model="newDashboardName" placeholder="Nuevo dashboard..." />
       <button type="submit">Agregar Dashboard</button>
     </form>
-  </div>
+  </div>-->
 </template>
-<style></style>
+<style>
+.dashboard-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+input[type='text'] {
+  margin-right: 10px;
+}
+</style>
