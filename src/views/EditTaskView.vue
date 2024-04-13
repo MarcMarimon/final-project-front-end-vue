@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useTasksStore } from '@/stores/tasksStore.js'
 import { useRouter } from 'vue-router'
 import { TASK_STATUS } from '@/utils/enums.js'
@@ -16,6 +16,17 @@ const saveChanges = async () => {
   await tasksStore.updateTaskById(taskId, newTask)
   router.go(-1)
 }
+onMounted(async () => {
+  if (!tasksStore.tasks.length) {
+    await tasksStore.fetchTasks()
+  }
+  const taskId = router.currentRoute.value.params.taskId
+  const task = tasksStore.tasks.find((task) => task.id == taskId)
+  if (task) {
+    editedTaskTitle.value = task.title
+    editedTaskStatus.value = task.status
+  }
+})
 </script>
 
 <template>
@@ -26,7 +37,9 @@ const saveChanges = async () => {
       <input type="text" v-model="editedTaskTitle" />
       <label>Estado:</label>
       <select v-model="editedTaskStatus">
-        <option v-for="status in TASK_STATUS" :key="status" :value="status">{{ status }}</option>
+        <option v-for="status in TASK_STATUS" :key="status" :value="status.value">
+          {{ status.text }}
+        </option>
       </select>
       <button type="submit">Guardar Cambios</button>
     </form>

@@ -48,6 +48,7 @@ export const useDashboardsStore = defineStore('dashboards', () => {
             console.error(error)
         }
     }
+
     return {
         // State
         dashboards,
@@ -57,6 +58,6 @@ export const useDashboardsStore = defineStore('dashboards', () => {
         clear,
         addDashboard,
         removeDashboard,
-        updateDashboardById
+        updateDashboardById,
     }
 })
