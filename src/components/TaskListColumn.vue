@@ -2,8 +2,8 @@
 import { TASK_STATUS } from '@/utils/enums'
 
 defineProps({
-  tasks: Array,
-  title: String
+  tasks: { type: Array, required: true },
+  title: { type: String, required: true }
 })
 
 defineEmits(['edit-task', 'remove-task'])

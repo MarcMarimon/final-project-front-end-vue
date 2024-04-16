@@ -5,6 +5,7 @@ import { useTasksStore } from '@/stores/tasksStore.js'
 import { useRouter } from 'vue-router'
 import { useDashboardsStore } from '@/stores/dashboardsStore.js'
 import TaskListColumn from '@/components/TaskListColumn.vue'
+import EditTaskView from '@/views/EditTaskView.vue'
 
 const router = useRouter()
 const tasksStore = useTasksStore()
@@ -31,7 +32,17 @@ const tasks = ref([
     tasks: getCompletedTasks
   }
 ])
+const showEditDialog = ref(false)
+const selectedTaskId = ref(null)
 
+const openEditDialog = (taskId) => {
+  selectedTaskId.value = taskId
+  showEditDialog.value = true
+}
+
+const closeEditDialog = () => {
+  showEditDialog.value = false
+}
 const actualDashboard = computed(() => {
   return dashboards.value.find((dashboard) => dashboard.id === actualDashboardId.value)
 })
@@ -46,9 +57,9 @@ const addNewTask = async () => {
 const removeTask = async (taskId) => {
   await tasksStore.removeTask(taskId)
 }
-const openEditView = (taskId) => {
+/*const openEditView = (taskId) => {
   router.push({ name: 'editTask', params: { taskId } })
-}
+}*/
 
 onMounted(async () => {
   await dashboardsStore.fetchDashboards()
@@ -67,10 +78,11 @@ onMounted(async () => {
         :key="taskColumn.id"
         :title="taskColumn.title"
         :tasks="taskColumn.tasks"
-        @edit-task="openEditView"
-        @delete-task="removeTask"
+        @edit-task="openEditDialog"
+        @remove-task="removeTask"
       />
     </section>
+    <EditTaskView v-if="showEditDialog" :taskId="selectedTaskId" @close-dialog="closeEditDialog" />
   </div>
   <form @submit.prevent="addNewTask()">
     <input type="text" v-model="newTaskTitle" placeholder="Nueva tarea..." />
