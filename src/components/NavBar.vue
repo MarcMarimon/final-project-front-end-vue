@@ -19,7 +19,6 @@ const signOut = () => {
   <nav>
     <div class="nav-links">
       <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
       <router-link v-if="isUserLoggedIn" to="/dashboard">Dashboard</router-link>
     </div>
     <div class="logs-buttons">

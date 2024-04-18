@@ -3,13 +3,16 @@ import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useDashboardsStore } from '@/stores/dashboardsStore.js'
 import { useRouter } from 'vue-router'
+import EditDashboard from '@/components/EditDashboard.vue'
+import ModalComp from '@/components/ModalComp.vue'
 
 const router = useRouter()
 const dashboardsStore = useDashboardsStore()
 const newDashboardName = ref('')
 const editedDashboardName = ref('')
-const isEditing = ref(-1)
 const { dashboards } = storeToRefs(dashboardsStore)
+const showEditDialog = ref(false)
+const selectedDashboardId = ref(null)
 
 const addNewDashboard = async () => {
   if (newDashboardName.value.trim() !== '') {
@@ -21,19 +24,14 @@ const deleteDashboard = async (dashboardId) => {
   await dashboardsStore.removeDashboard(dashboardId)
 }
 const startEdit = (dashboard) => {
-  isEditing.value = dashboard.id
   editedDashboardName.value = dashboard.name
+  showEditDialog.value = true
+  selectedDashboardId.value = dashboard.id
 }
-const saveDashboardName = async (dashboard) => {
-  if (editedDashboardName.value.trim() !== '') {
-    await dashboardsStore.updateDashboardById(dashboard.id, {
-      name: editedDashboardName.value.trim()
-    })
-    isEditing.value = -1
-  }
-}
-const cancelEdit = () => {
-  isEditing.value = -1
+const closeEditDialog = () => {
+  showEditDialog.value = false
+  selectedDashboardId.value = null
+  editedDashboardName.value = ''
 }
 const openDashboardTasks = (dashboardId) => {
   router.push({ name: 'DashboardTasks', params: { dashboardId } })
@@ -52,23 +50,27 @@ onMounted(() => {
       @click="openDashboardTasks(dashboard.id)"
     >
       <div class="dashboard-card">
-        <template v-if="isEditing === dashboard.id">
-          <input
-            type="text"
-            v-model="editedDashboardName"
-            placeholder="Nuevo nombre del Dashboard"
-          />
-          <button @click="saveDashboardName(dashboard)">Guardar</button>
-          <button @click="cancelEdit()">Cancelar</button>
-        </template>
-        <template v-else>
-          <h3>{{ dashboard.name }}</h3>
-          <button @click="startEdit(dashboard)">Editar</button>
-        </template>
-        <button @click="deleteDashboard(dashboard.id)">Eliminar</button>
+        <h3>{{ dashboard.name }}</h3>
+
+        <button @click.prevent.stop="startEdit(dashboard)">Editar</button>
+
+        <button @click.prevent.stop="deleteDashboard(dashboard.id)">Eliminar</button>
       </div>
     </div>
-
+    <ModalComp
+      ref="editDashboardModal"
+      @close="closeEditDialog"
+      :title="'Editar Dashboard'"
+      :opened="showEditDialog"
+    >
+      <template v-if="selectedDashboardId !== null">
+        <EditDashboard
+          :dashboardId="selectedDashboardId"
+          :originalName="editedDashboardName"
+          @close-dialog="closeEditDialog"
+        />
+      </template>
+    </ModalComp>
     <form @submit.prevent="addNewDashboard()">
       <input type="text" v-model="newDashboardName" placeholder="Nuevo dashboard..." />
       <button type="submit">Agregar Dashboard</button>

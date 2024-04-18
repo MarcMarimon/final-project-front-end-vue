@@ -5,7 +5,8 @@ import { useTasksStore } from '@/stores/tasksStore.js'
 import { useRouter } from 'vue-router'
 import { useDashboardsStore } from '@/stores/dashboardsStore.js'
 import TaskListColumn from '@/components/TaskListColumn.vue'
-import EditTaskView from '@/views/EditTaskView.vue'
+import EditTask from '@/components/EditTask.vue'
+import ModalComp from '@/components/ModalComp.vue'
 
 const router = useRouter()
 const tasksStore = useTasksStore()
@@ -14,6 +15,7 @@ const { actualDashboardId, getNotStartedTasks, getInProgressTasks, getCompletedT
   storeToRefs(tasksStore)
 const dashboardsStore = useDashboardsStore()
 const { dashboards } = storeToRefs(dashboardsStore)
+const editTaskModal = ref(null)
 
 const tasks = ref([
   {
@@ -34,14 +36,18 @@ const tasks = ref([
 ])
 const showEditDialog = ref(false)
 const selectedTaskId = ref(null)
+const editDialogTitle = ref('')
 
-const openEditDialog = (taskId) => {
+const handleEditTask = (taskId) => {
   selectedTaskId.value = taskId
+  editDialogTitle.value = 'Editar Tarea'
   showEditDialog.value = true
 }
 
-const closeEditDialog = () => {
+const handleEditModalClose = () => {
   showEditDialog.value = false
+  selectedTaskId.value = null
+  editDialogTitle.value = ''
 }
 const actualDashboard = computed(() => {
   return dashboards.value.find((dashboard) => dashboard.id === actualDashboardId.value)
@@ -57,9 +63,6 @@ const addNewTask = async () => {
 const removeTask = async (taskId) => {
   await tasksStore.removeTask(taskId)
 }
-/*const openEditView = (taskId) => {
-  router.push({ name: 'editTask', params: { taskId } })
-}*/
 
 onMounted(async () => {
   await dashboardsStore.fetchDashboards()
@@ -78,11 +81,20 @@ onMounted(async () => {
         :key="taskColumn.id"
         :title="taskColumn.title"
         :tasks="taskColumn.tasks"
-        @edit-task="openEditDialog"
+        @edit-task="handleEditTask"
         @remove-task="removeTask"
       />
     </section>
-    <EditTaskView v-if="showEditDialog" :taskId="selectedTaskId" @close-dialog="closeEditDialog" />
+    <ModalComp
+      ref="editTaskModal"
+      @close="handleEditModalClose"
+      :title="editDialogTitle"
+      :opened="showEditDialog"
+    >
+      <template v-if="selectedTaskId !== null">
+        <EditTask :taskId="selectedTaskId" @close-dialog="handleEditModalClose" />
+      </template>
+    </ModalComp>
   </div>
   <form @submit.prevent="addNewTask()">
     <input type="text" v-model="newTaskTitle" placeholder="Nueva tarea..." />

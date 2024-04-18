@@ -27,19 +27,9 @@ const router = createRouter({
       component: () => import('@/views/WelcomeView.vue')
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('@/views/AboutView.vue')
-    },
-    {
       path: '/dashboard',
       name: 'dashboard',
       component: () => import('@/views/DashboardView.vue')
-    },
-    {
-      path: '/edit/:taskId',
-      name: 'editTask',
-      component: () => import('@/views/EditTaskView.vue')
     },
     {
       path: '/dashboard/:dashboardId',
