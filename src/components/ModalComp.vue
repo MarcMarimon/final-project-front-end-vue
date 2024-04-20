@@ -64,6 +64,8 @@ watch(
   border-radius: 4px;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 .edit-task-dialog {
   position: fixed;
@@ -80,12 +82,12 @@ watch(
 .modal-content {
   background-color: #fff;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  width: auto;
-  max-width: 80%;
+  width: 80%;
+  max-width: 500px;
   max-height: 80%;
-  overflow: auto;
+  overflow-y: auto;
   position: relative;
 }
 
@@ -96,6 +98,18 @@ watch(
   cursor: pointer;
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 24px;
+  color: #555;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    width: 90%;
+    max-width: 100%;
+  }
 }
 </style>

@@ -22,7 +22,7 @@
       <h2>Key Features</h2>
       <div class="feature">
         <div class="feature-icon">
-          <font-awesome-icon icon="tasks" />
+          <font-awesome-icon icon="list-check" />
         </div>
         <div class="feature-details">
           <h3>Task Management</h3>
@@ -88,9 +88,21 @@
         <div class="social-links">
           <h5>Follow Us</h5>
           <ul>
-            <li><a href="https://twitter.com/example" target="_blank">Twitter</a></li>
-            <li><a href="https://facebook.com/example" target="_blank">Facebook</a></li>
-            <li><a href="https://instagram.com/example" target="_blank">Instagram</a></li>
+            <li>
+              <font-awesome-icon :icon="['fab', 'twitter']" />
+              <a href="https://twitter.com/example" target="_blank">Twitter</a>
+            </li>
+            <li>
+              <font-awesome-icon :icon="['fab', 'facebook']" /><a
+                href="https://facebook.com/example"
+                target="_blank"
+                >Facebook</a
+              >
+            </li>
+            <li>
+              <font-awesome-icon :icon="['fab', 'instagram']" />
+              <a href="https://instagram.com/example" target="_blank">Instagram</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -102,6 +114,7 @@
 .home-container {
   padding: 2rem;
   margin-top: 50px;
+  overflow: scroll;
 }
 
 .hero-section {
@@ -122,15 +135,22 @@
 }
 
 .features-section {
-  text-align: center;
+  display: flex;
   margin-bottom: 4rem;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .feature {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 2rem;
+  width: 100%;
+  max-width: 600px;
+  gap: 1rem;
 }
 
 .feature-icon {
@@ -182,5 +202,16 @@
 }
 .social-links ul {
   list-style: none;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.social-links li {
+  display: flex;
+  align-items: center;
+  max-width: 100px;
+  width: 100%;
+  gap: 0.5rem;
 }
 </style>

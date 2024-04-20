@@ -72,10 +72,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="actualDashboard">
-    <h2>Tareas de {{ actualDashboard.name }}</h2>
+  <div v-if="actualDashboard" class="task-list-view">
+    <h2 class="task-list-title">Tareas de {{ actualDashboard.name }}</h2>
 
-    <section class="columns">
+    <section class="task-columns">
       <TaskListColumn
         v-for="taskColumn in tasks"
         :key="taskColumn.id"
@@ -85,6 +85,8 @@ onMounted(async () => {
         @remove-task="removeTask"
       />
     </section>
+
+    <!-- Modal para editar tarea -->
     <ModalComp
       ref="editTaskModal"
       @close="handleEditModalClose"
@@ -95,17 +97,63 @@ onMounted(async () => {
         <EditTask :taskId="selectedTaskId" @close-dialog="handleEditModalClose" />
       </template>
     </ModalComp>
+
+    <!-- Formulario para agregar nueva tarea -->
+    <form @submit.prevent="addNewTask()" class="add-task-form">
+      <input
+        type="text"
+        v-model="newTaskTitle"
+        placeholder="Nueva tarea..."
+        class="add-task-input"
+      />
+      <button type="submit" class="add-task-button">Agregar Tarea</button>
+    </form>
   </div>
-  <form @submit.prevent="addNewTask()">
-    <input type="text" v-model="newTaskTitle" placeholder="Nueva tarea..." />
-    <button type="submit">Agregar Tarea</button>
-  </form>
 </template>
 
 <style scoped>
-.columns {
+.task-list-view {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-list-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.task-columns {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  gap: 20px;
+}
+
+.add-task-form {
+  margin-top: 2rem;
+}
+
+.add-task-input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.add-task-button {
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-task-button:hover {
+  background-color: #0056b3;
 }
 </style>

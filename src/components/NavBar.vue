@@ -16,42 +16,84 @@ const signOut = () => {
 }
 </script>
 <template>
-  <nav>
-    <div class="nav-links">
-      <router-link to="/">Home</router-link>
-      <router-link v-if="isUserLoggedIn" to="/dashboard">Dashboard</router-link>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <router-link to="/" class="logo"
+        ><img src="@/assets/images/taskinator logo transp.png"
+      /></router-link>
     </div>
-    <div class="logs-buttons">
-      <router-link v-if="!isUserLoggedIn" to="/signIn">Sign In</router-link>
-      <router-link v-if="!isUserLoggedIn" to="/signUp">Sign Up</router-link>
-      <button v-if="isUserLoggedIn" @click="signOut">Sign Out</button>
+    <div class="navbar-links">
+      <router-link to="/" class="nav-link">Home</router-link>
+      <router-link v-if="isUserLoggedIn" to="/dashboard" class="nav-link">Dashboard</router-link>
+    </div>
+    <div class="navbar-actions">
+      <router-link v-if="!isUserLoggedIn" to="/signIn" class="nav-link">Sign In</router-link>
+      <router-link v-if="!isUserLoggedIn" to="/signUp" class="nav-link">Sign Up</router-link>
+      <button v-if="isUserLoggedIn" @click="signOut" class="sign-out-button">Sign Out</button>
     </div>
   </nav>
 </template>
 
 <style scoped>
-nav {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #000;
+  background-color: #000000;
   color: #fff;
-  font-size: 20px;
-  padding: 10px;
+  padding: 10px 20px;
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  z-index: 1000;
 }
-.nav-links {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 200px;
+
+.navbar-brand {
+  font-size: 24px;
 }
-.logs-buttons {
+
+.logo {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+.logo img {
+  max-width: 220px;
+}
+
+.navbar-links {
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  width: 200px;
+}
+
+.nav-link {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ffd700; /* Cambia el color al pasar el mouse por encima */
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+}
+
+.sign-out-button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sign-out-button:hover {
+  background-color: #c82333; /* Cambia el color al pasar el mouse por encima */
 }
 </style>
