@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps, defineEmits } from 'vue'
+import { ref } from 'vue'
 import { useDashboardsStore } from '@/stores/dashboardsStore.js'
 
 const props = defineProps({

@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useUserStore } from '@/stores/userStore.js'
 import { useTasksStore } from '@/stores/tasksStore.js'
 import { useDashboardsStore } from '@/stores/dashboardsStore'
+import { SIGN_TYPES } from '@/utils/enums.js'
 
 const userStore = useUserStore()
 const tasksStore = useTasksStore()
@@ -27,9 +28,15 @@ const signOut = () => {
       <router-link v-if="isUserLoggedIn" to="/dashboard" class="nav-link">Dashboard</router-link>
     </div>
     <div class="navbar-actions">
-      <router-link v-if="!isUserLoggedIn" to="/signIn" class="nav-link">Sign In</router-link>
-      <router-link v-if="!isUserLoggedIn" to="/signUp" class="nav-link">Sign Up</router-link>
-      <button v-if="isUserLoggedIn" @click="signOut" class="sign-out-button">Sign Out</button>
+      <router-link v-if="!isUserLoggedIn" to="/signIn" class="nav-link">{{
+        SIGN_TYPES.signIn.text
+      }}</router-link>
+      <router-link v-if="!isUserLoggedIn" to="/signUp" class="nav-link">{{
+        SIGN_TYPES.signUp.text
+      }}</router-link>
+      <button v-if="isUserLoggedIn" @click="signOut" class="sign-out-button">
+        {{ SIGN_TYPES.signOut.text }}
+      </button>
     </div>
   </nav>
 </template>

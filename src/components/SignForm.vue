@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore.js'
+import { SIGN_TYPES } from '@/utils/enums.js'
 
 import LayoutCard from '@/components/LayoutCard.vue'
 
@@ -30,12 +31,12 @@ const _handleClick = async () => {
 
 <template>
   <LayoutCard>
-    <h1>{{ signType }} please</h1>
+    <h1>{{ SIGN_TYPES[signType].text }} please</h1>
     <div class="labels">
       <label> User: <input type="text" v-model="user" /> </label>
       <label> Password: <input type="password" v-model="password" /> </label>
     </div>
-    <button @click="_handleClick">{{ signType }}</button>
+    <button @click="_handleClick">{{ SIGN_TYPES[signType].text }}</button>
   </LayoutCard>
 </template>
 
@@ -43,10 +44,38 @@ const _handleClick = async () => {
 .labels {
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
+
+.labels label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
 .labels input {
   width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button[type='submit'] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type='submit']:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
 }
 </style>
