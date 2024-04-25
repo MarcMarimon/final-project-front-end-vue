@@ -4,16 +4,32 @@
   <main class="home-container">
     <!-- Hero Section -->
     <section class="hero-section">
-      <div class="hero-content">
-        <h1>Welcome to Your Task Management App</h1>
-        <p>
-          Organize your tasks and dashboards efficiently with our powerful app. Stay productive and
-          achieve your goals seamlessly.
-        </p>
-        <router-link to="/dashboard" class="link-btn">Get Started</router-link>
-      </div>
-      <div class="hero-image">
-        <img src="" alt="Task Management App" />
+      <div class="gradient-background">
+        <div class="hero-content-container">
+          <div class="hero-content">
+            <h1>Welcome to Your Task Management App</h1>
+            <p>
+              Organize your tasks and dashboards efficiently with our powerful app. Stay productive
+              and achieve your goals seamlessly.
+            </p>
+            <router-link to="/dashboard" class="link-btn"
+              >Get Started <font-awesome-icon icon="rocket"
+            /></router-link>
+          </div>
+          <div class="hero-image">
+            <img
+              srcset="
+                //images.ctfassets.net/rz1oowkt5gyp/75rDABL8fyMtNLlUAtBxrg/c5e145977a86c41c47e17c69410c64f7/TrelloUICollage_4x.png?w=1080 2x
+              "
+              src="//images.ctfassets.net/rz1oowkt5gyp/75rDABL8fyMtNLlUAtBxrg/c5e145977a86c41c47e17c69410c64f7/TrelloUICollage_4x.png?w=540"
+              alt="An illustration showing different features of a Trello board"
+              width="1360"
+              height="1200"
+              loading="lazy"
+              class="Picture__Image-sc-1wdxyb4-0 eYmxm"
+            />
+          </div>
+        </div>
       </div>
     </section>
 
@@ -112,9 +128,7 @@
 
 <style scoped>
 .home-container {
-  padding: 2rem;
-  margin-top: 50px;
-  overflow: scroll;
+  margin-top: 80px;
 }
 
 .hero-section {
@@ -123,15 +137,98 @@
   align-items: center;
   margin-bottom: 4rem;
 }
+.gradient-background {
+  width: 100vw;
+  height: 100vh;
+  max-height: 65vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(
+    to left,
+    rgb(99, 165, 219) 0%,
+    hsla(194, 45%, 75%, 1) 31%,
+    hsla(241, 71%, 43%, 1) 90%
+  );
+
+  background: -moz-linear-gradient(
+    to left,
+    rgb(99, 165, 219) 0%,
+    hsla(194, 45%, 75%, 1) 31%,
+    hsla(241, 71%, 43%, 1) 90%
+  );
+
+  background: -webkit-linear-gradient(
+    to left,
+    rgb(99, 165, 219) 0%,
+    hsla(194, 45%, 75%, 1) 31%,
+    hsla(241, 71%, 43%, 1) 90%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#A3CFDC", endColorstr="#CF93BD", GradientType=1 );
+}
+.hero-content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0px;
+  height: 100%;
+  width: 100%;
+  max-width: 1400px;
+}
 
 .hero-content {
   flex: 1;
-  max-width: 50%;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 36px;
+}
+.hero-content > h1 {
+  font-size: 68px;
+  line-height: 0.9;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 40px;
+  text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.438);
+  font-family: 'Roboto', sans-serif;
+}
+.hero-content > p {
+  font-family: 'Roboto', sans-serif;
+  color: rgb(209, 209, 209);
+  font-size: 20px;
+  font-weight: 500;
+  max-width: 70%;
+  margin-bottom: 24px;
+}
+.hero-content > a {
+  font-size: 30px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  background-color: rgba(121, 162, 224, 0.4);
+  color: rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  padding: 4px 12px;
+}
+.hero-content > a:hover {
+  background-color: rgba(121, 162, 224, 0.8);
+  color: rgba(0, 0, 0);
 }
 
 .hero-image {
-  flex: 1;
-  max-width: 50%;
+  max-width: 40%;
+  height: 100%;
+  object-fit: contain;
+}
+.hero-image > img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  padding: 0px 20px;
 }
 
 .features-section {
@@ -213,5 +310,40 @@
   max-width: 100px;
   width: 100%;
   gap: 0.5rem;
+}
+@media (max-width: 1024px) {
+  .gradient-background {
+    min-height: 100vh;
+    align-items: center;
+
+    background: linear-gradient(to left, rgb(99, 165, 219) 0%, hsla(241, 71%, 43%, 1) 90%);
+    background: -moz-linear-gradient(to left, rgb(99, 165, 219) 0%, hsla(241, 71%, 43%, 1) 90%);
+    background: -webkit-linear-gradient(to left, rgb(99, 165, 219) 0%, hsla(241, 71%, 43%, 1) 90%);
+  }
+  .hero-content-container {
+    flex-direction: column;
+    height: 100%;
+    padding-top: 0;
+  }
+  .hero-image {
+    width: 100%;
+    height: 30%;
+    flex: 1;
+    max-width: unset;
+  }
+  .hero-content {
+    width: 100%;
+    height: 70%;
+    flex: 1;
+    padding-bottom: 0;
+  }
+
+  .hero-content h1 {
+    font-size: 48px;
+  }
+  .hero-content p {
+    font-size: 16px;
+    max-width: unset;
+  }
 }
 </style>

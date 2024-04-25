@@ -19,15 +19,15 @@ const signOut = () => {
 <template>
   <nav class="navbar">
     <div class="navbar-brand">
-      <router-link to="/" class="logo"
-        ><img src="@/assets/images/taskinator logo transp.png"
+      <router-link to="/" class="logo">
+        <img class="logo-desktop" src="@/assets/images/taskinator logo transp.png" />
+        <img class="logo-mobile" src="@/assets/images/taskinator logo transp small.png"
       /></router-link>
     </div>
-    <div class="navbar-links">
+
+    <div class="navbar-actions">
       <router-link to="/" class="nav-link">Home</router-link>
       <router-link v-if="isUserLoggedIn" to="/dashboard" class="nav-link">Dashboard</router-link>
-    </div>
-    <div class="navbar-actions">
       <router-link v-if="!isUserLoggedIn" to="/signIn" class="nav-link">{{
         SIGN_TYPES.signIn.text
       }}</router-link>
@@ -46,7 +46,7 @@ const signOut = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #000000;
+  background-color: #242424;
   color: #fff;
   padding: 10px 20px;
   position: fixed;
@@ -54,6 +54,7 @@ const signOut = () => {
   left: 0;
   width: 100%;
   z-index: 1000;
+  height: 80px;
 }
 
 .navbar-brand {
@@ -64,9 +65,14 @@ const signOut = () => {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .logo img {
   max-width: 220px;
+  height: 35px;
+  filter: brightness(160%);
 }
 
 .navbar-links {
@@ -102,5 +108,17 @@ const signOut = () => {
 
 .sign-out-button:hover {
   background-color: #c82333; /* Cambia el color al pasar el mouse por encima */
+}
+.logo-mobile {
+  display: none;
+  height: 20px;
+}
+@media (max-width: 1024px) {
+  .logo-desktop {
+    display: none;
+  }
+  .logo-mobile {
+    display: block;
+  }
 }
 </style>
