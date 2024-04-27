@@ -100,35 +100,42 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
 }
+
 .dashboard-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin-top: 30px;
 }
+
 .dashboard-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 1.5rem;
+  border: none;
+  border-radius: 12px;
+  padding: 2rem;
   margin-bottom: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  background-color: #fff;
+  cursor: pointer;
 }
 
 .dashboard-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: #eeeeee;
 }
 
 .dashboard-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
+  color: #242424;
 }
 
 .dashboard-buttons button {
   padding: 0.5rem 1rem;
   margin-right: 0.5rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: #007bff;
   color: #fff;
   cursor: pointer;
@@ -148,21 +155,21 @@ onMounted(() => {
   flex: 1;
   padding: 0.5rem;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .add-dashboard-button {
   padding: 0.5rem 1rem;
   margin-left: 1rem;
   border: none;
-  border-radius: 4px;
-  background-color: #28a745;
+  border-radius: 8px;
+  background-color: #007bff;
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .add-dashboard-button:hover {
-  background-color: #218838;
+  background-color: #0056b3;
 }
 </style>

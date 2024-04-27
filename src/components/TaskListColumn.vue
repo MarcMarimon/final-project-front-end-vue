@@ -1,15 +1,65 @@
 <script setup>
-defineProps({
+import { ref } from 'vue'
+
+const { tasks, title } = defineProps({
   tasks: { type: Array, required: true },
   title: { type: String, required: true }
 })
+const myEmit = ref(null)
 
-defineEmits(['edit-task', 'remove-task'])
+const customEmit = (event, data) => {
+  if (myEmit.value) {
+    myEmit.value(event, data)
+  }
+}
+const draggedTask = ref(null)
+
+const handleDragStart = (event, taskId) => {
+  event.dataTransfer.setData('TaskId', taskId.toString())
+  draggedTask.value = taskId
+}
+
+const hadleDragEnd = (event) => {
+  event.preventDefault()
+}
+
+const handleDrop = (event) => {
+  console.log('handleDrop called')
+  event.preventDefault()
+  const targetStatus = event.target.closest('.task-list-column').getAttribute('data-status')
+  console.log('Target status:', targetStatus)
+
+  if (draggedTask.value) {
+    console.log('Dragged task exists')
+    const taskId = parseInt(draggedTask.value)
+    const updatedTask = tasks.value.find((task) => task.id === taskId)
+    if (updatedTask) {
+      console.log('Updating task status')
+      updatedTask.status = targetStatus
+      customEmit('move-task', { taskId, targetStatus })
+    } else {
+      console.log('Task not found')
+    }
+    draggedTask.value = null
+  } else {
+    console.log('No dragged task')
+  }
+}
 </script>
+
 <template>
-  <ul class="task-list-column">
+  <ul class="task-list-column" :data-status="title.toLowerCase()">
     <li class="column-title">{{ title }}</li>
-    <li v-for="task in tasks" :key="task.id" class="task-item">
+    <li
+      v-for="task in tasks"
+      :key="task.id"
+      class="task-item"
+      draggable="true"
+      @dragstart="(event) => handleDragStart(event, task.id)"
+      @dragend="hadleDragEnd"
+      @dragover.prevent
+      @drop="handleDrop"
+    >
       <div class="task-details">
         <span>{{ task.title }}</span>
       </div>
@@ -52,6 +102,11 @@ defineEmits(['edit-task', 'remove-task'])
   justify-content: space-between;
   padding: 0.8rem 1rem;
   border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+.task-item:hover {
+  background-color: #eeeeee;
 }
 .task-item:last-of-type {
   border-bottom: none;
@@ -68,22 +123,13 @@ defineEmits(['edit-task', 'remove-task'])
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s linear;
+  background-color: #fff;
+  color: #007bff;
 }
-
-.edit-button {
-  background-color: #ffc107;
-  color: #212529;
-}
-
-.delete-button {
-  background-color: #e91a2f;
-  color: #fff;
-}
-.edit-button:hover {
-  background-color: #ffc10780;
-}
+.edit-button:hover,
 .delete-button:hover {
-  background-color: #e91a2f93;
+  background-color: #0056b3;
+  color: #fff;
 }
 .status-text {
   font-style: italic;

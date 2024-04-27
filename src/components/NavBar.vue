@@ -88,7 +88,7 @@ const signOut = () => {
 }
 
 .nav-link:hover {
-  color: #ffd700; /* Cambia el color al pasar el mouse por encima */
+  color: #ffd700;
 }
 
 .navbar-actions {

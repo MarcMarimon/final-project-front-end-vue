@@ -22,13 +22,13 @@ export const useTasksStore = defineStore('tasks', () => {
     })
 
     const getNotStartedTasks = computed(() => {
-        return tasksByDashboardId.value[actualDashboardId.value].filter(task => task.status === 'NOT_STARTED')
+        return tasksByDashboardId.value[actualDashboardId.value]?.filter(task => task.status === 'NOT_STARTED') || []
     })
     const getInProgressTasks = computed(() => {
-        return tasksByDashboardId.value[actualDashboardId.value].filter(task => task.status === 'IN_PROGRES')
+        return tasksByDashboardId.value[actualDashboardId.value]?.filter(task => task.status === 'IN_PROGRES') || []
     })
     const getCompletedTasks = computed(() => {
-        return tasksByDashboardId.value[actualDashboardId.value].filter(task => task.status === 'COMPLETED')
+        return tasksByDashboardId.value[actualDashboardId.value]?.filter(task => task.status === 'COMPLETED') || []
     })
     // Actions
     const fetchTasks = async () => {

@@ -49,6 +49,9 @@ const handleEditModalClose = () => {
   selectedTaskId.value = null
   editDialogTitle.value = ''
 }
+const handleMoveTask = (event) => {
+  console.log('Task with ID:', event.taskId, 'moved to status:', event.targetStatus)
+}
 const actualDashboard = computed(() => {
   return dashboards.value.find((dashboard) => dashboard.id === actualDashboardId.value)
 })
@@ -83,6 +86,7 @@ onMounted(async () => {
         :tasks="taskColumn.tasks"
         @edit-task="handleEditTask"
         @remove-task="removeTask"
+        @move-task="handleMoveTask"
       />
     </section>
 
@@ -123,6 +127,7 @@ onMounted(async () => {
 .task-list-title {
   font-size: 2rem;
   margin-bottom: 1.5rem;
+  color: #242424;
 }
 
 .task-columns {
@@ -139,14 +144,14 @@ onMounted(async () => {
   flex: 1;
   padding: 0.5rem;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .add-task-button {
   padding: 0.5rem 1rem;
   margin-left: 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: #007bff;
   color: #fff;
   cursor: pointer;

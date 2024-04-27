@@ -41,6 +41,7 @@ const _handleClick = async () => {
 </template>
 
 <style scoped>
+/* Estilos para el formulario de inicio de sesión */
 .labels {
   display: flex;
   flex-direction: column;
@@ -54,23 +55,24 @@ const _handleClick = async () => {
 
 .labels input {
   width: 100%;
-  padding: 8px;
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: 16px;
 }
 
-button[type='submit'] {
+button {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-button[type='submit']:hover {
+button:hover {
   background-color: #0056b3;
 }
 

@@ -36,45 +36,66 @@
     <!-- Features Section -->
     <section class="features-section">
       <h2>Key Features</h2>
-      <div class="feature">
-        <div class="feature-icon">
-          <font-awesome-icon icon="list-check" />
+      <p>
+        Taskinator 3000's intuitive features give any team the ability to quickly set up and
+        customize workflows for just about anything.
+      </p>
+      <div class="feature-cards-container">
+        <div class="feature">
+          <div class="feature-icon">
+            <font-awesome-icon icon="list-check" />
+          </div>
+          <div class="feature-details">
+            <h3>Task Management</h3>
+            <p>Efficiently manage tasks by organizing them into customizable dashboards.</p>
+          </div>
         </div>
-        <div class="feature-details">
-          <h3>Task Management</h3>
-          <p>Efficiently manage tasks by organizing them into customizable dashboards.</p>
+        <div class="feature">
+          <div class="feature-icon">
+            <font-awesome-icon icon="columns" />
+          </div>
+          <div class="feature-details">
+            <h3>Custom Dashboards</h3>
+            <p>Create and customize dashboards to track your tasks based on different criteria.</p>
+          </div>
         </div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">
-          <font-awesome-icon icon="columns" />
-        </div>
-        <div class="feature-details">
-          <h3>Custom Dashboards</h3>
-          <p>Create and customize dashboards to track your tasks based on different criteria.</p>
-        </div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">
-          <font-awesome-icon icon="chart-line" />
-        </div>
-        <div class="feature-details">
-          <h3>Productivity Insights</h3>
-          <p>Gain valuable insights into your productivity with built-in analytics and reports.</p>
+        <div class="feature">
+          <div class="feature-icon">
+            <font-awesome-icon icon="chart-line" />
+          </div>
+          <div class="feature-details">
+            <h3>Productivity Insights</h3>
+            <p>
+              Gain valuable insights into your productivity with built-in analytics and reports.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Testimonial Section -->
     <section class="testimonial-section">
-      <h2>What Our Users Say</h2>
-      <div class="testimonial">
-        <div class="testimonial-avatar">
-          <img src="" alt="User Avatar" />
-        </div>
-        <div class="testimonial-details">
-          <p>"This app has transformed how I manage my tasks. It's intuitive and powerful!"</p>
-          <p><strong>John Doe</strong>, Project Manager</p>
+      <div class="testimonial-section-content">
+        <h2>What Our Users Say</h2>
+        <div class="testimonial">
+          <div class="testimonial-avatar">
+            <img
+              src="https://www.que.es/wp-content/uploads/2022/05/Que-es-Akinator-1-1.jpeg"
+              alt="User Avatar"
+            />
+          </div>
+          <div class="testimonial-content-right">
+            <div class="testimonial-stars">
+              <font-awesome-icon icon="star" /><font-awesome-icon icon="star" /><font-awesome-icon
+                icon="star"
+              /><font-awesome-icon icon="star" /><font-awesome-icon icon="star" />
+            </div>
+
+            <div class="testimonial-details">
+              <p>"This app has transformed how I manage my tasks. It's intuitive and powerful!"</p>
+              <label><strong>Akinator</strong>, Project Manager</label>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -82,27 +103,35 @@
     <!-- About Section -->
     <section class="about-section">
       <h2>About Our App</h2>
-      <p>
-        Our task management app is designed to help individuals and teams stay organized,
-        collaborate effectively, and achieve their goals. Whether you're a freelancer, a small
-        business, or a large corporation, our app is tailored to meet your needs.
-      </p>
+      <div class="about-coments">
+        <p>
+          Taskinator 3000 is a powerful task management app that helps you organize your tasks and
+          dashboards efficiently. With its intuitive interface, you can create and customize
+          dashboards to track your tasks based on different criteria.
+        </p>
+        <p>
+          Our task management app is designed to help individuals and teams stay organized,
+          collaborate effectively, and achieve their goals. Whether you're a freelancer, a small
+          business, or a large corporation, our app is tailored to meet your needs.
+        </p>
+      </div>
     </section>
 
     <!-- Footer Section -->
     <footer class="footer">
       <div class="footer-content">
         <div class="contact-info">
-          <h5>Contact Information</h5>
+          <img class="logo-mobile" src="@/assets/images/taskinator logo transp small.png" />
+          <h3>Contact Information</h3>
           <address>
-            Your Company Name<br />
+            Taskinator3000 SL.<br />
             123 Street, City, Country<br />
             Phone: 123-456-7890<br />
             Email: info@example.com
           </address>
         </div>
         <div class="social-links">
-          <h5>Follow Us</h5>
+          <h3>Follow Us</h3>
           <ul>
             <li>
               <font-awesome-icon :icon="['fab', 'twitter']" />
@@ -195,7 +224,6 @@
   color: white;
   margin-bottom: 40px;
   text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.438);
-  font-family: 'Roboto', sans-serif;
 }
 .hero-content > p {
   font-family: 'Roboto', sans-serif;
@@ -233,56 +261,175 @@
 
 .features-section {
   display: flex;
-  margin-bottom: 4rem;
   max-width: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 0 36px;
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-bottom: 4rem;
 }
-
+.features-section > h2 {
+  font-size: 40px;
+  font-weight: 700;
+  align-self: flex-start;
+}
+.features-section > p {
+  font-size: 20px;
+  color: #7c7a7a;
+  align-self: flex-start;
+  margin-bottom: 40px;
+}
+.feature-cards-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+}
 .feature {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 2rem;
-  width: 100%;
-  max-width: 600px;
-  gap: 1rem;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  max-width: 250px;
+  background-color: #ece9e9;
+  border-radius: 8px;
+  flex-grow: 1;
+  padding: 36px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.feature:hover {
+  transform: scale(1.03);
+  filter: brightness(99%);
 }
 
 .feature-icon {
-  font-size: 3rem;
-  margin-right: 1rem;
+  font-size: 3.5rem;
+  margin-bottom: 16px;
 }
 
 .feature-details {
-  text-align: left;
-}
-
-.testimonial-section {
   text-align: center;
+}
+.feature-details h3 {
+  font-size: 40px;
+  font-weight: 700;
+  align-self: flex-start;
+  margin-bottom: 30px;
+  color: #242424;
+  width: 100%;
+}
+.testimonial-section {
   margin-bottom: 4rem;
+  background-color: rgba(104, 153, 226, 0.4);
+}
+.testimonial-section-content {
+  display: flex;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 36px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.testimonial-section h2 {
+  font-size: 40px;
+  font-weight: 700;
+  align-self: flex-start;
+  margin-bottom: 30px;
+  color: #242424;
+  width: 100%;
 }
 
 .testimonial {
+  width: 100%;
+  max-width: 1000px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin-bottom: 2rem;
+  padding: 20px 60px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.testimonial-content-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 100%;
+  margin-left: 40px;
+  gap: 20px;
 }
 
-.testimonial-avatar {
-  margin-right: 1rem;
+.testimonial-details p {
+  font-size: 30px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.testimonial-details label {
+  font-size: 20px;
+  color: #242424;
+}
+.testimonial-details > label > strong {
+  font-weight: 700;
+}
+
+.testimonial-avatar img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .about-section {
-  text-align: center;
+  display: flex;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 36px;
+  max-width: 1400px;
+  margin: 0 auto;
   margin-bottom: 4rem;
+}
+.about-section h2 {
+  font-size: 40px;
+  font-weight: 700;
+  align-self: flex-start;
+  margin-bottom: 30px;
+  color: #242424;
+  width: 100%;
+}
+.about-coments {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 20px 60px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  gap: 50px;
+  height: 250px;
+  font-size: 20px;
 }
 
 .footer {
   text-align: center;
   margin-top: 4rem;
+  background-color: #242424;
+  color: rgb(209, 209, 209);
+  padding: 36px;
 }
 
 .footer-content {
@@ -291,11 +438,19 @@
   align-items: center;
   flex-wrap: wrap;
 }
-
+.footer-content h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
 .contact-info,
 .social-links {
   flex: 1;
   max-width: 50%;
+}
+.contact-info img {
+  width: 70px;
+  height: 50px;
 }
 .social-links ul {
   list-style: none;
