@@ -15,5 +15,17 @@ watch(
 </script>
 
 <template>
-  <SignForm :signType="method" />
+  <section>
+    <SignForm :signType="method" />
+  </section>
 </template>
+<style scoped>
+section {
+  width: 100%;
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+}
+</style>

@@ -4,16 +4,18 @@ import { useUserStore } from '@/stores/userStore.js'
 import { useTasksStore } from '@/stores/tasksStore.js'
 import { useDashboardsStore } from '@/stores/dashboardsStore'
 import { SIGN_TYPES } from '@/utils/enums.js'
+import { useRouter } from 'vue-router'
 
 const userStore = useUserStore()
 const tasksStore = useTasksStore()
 const dashboardsStore = useDashboardsStore()
 const isUserLoggedIn = computed(() => !!userStore.user)
-
-const signOut = () => {
-  userStore.signOut()
+const router = useRouter()
+const signOut = async () => {
+  await userStore.signOut()
   tasksStore.clear()
   dashboardsStore.clear()
+  router.push('/')
 }
 </script>
 <template>

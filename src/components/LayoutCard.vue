@@ -24,4 +24,9 @@
 .layout-card button {
   margin-top: 10px;
 }
+@media (max-width: 1024px) {
+  .layout-card {
+    width: fit-content;
+  }
+}
 </style>

@@ -172,4 +172,16 @@ onMounted(() => {
 .add-dashboard-button:hover {
   background-color: #0056b3;
 }
+
+@media (max-width: 1024px) {
+  .dashboard-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dashboard-card {
+    margin-bottom: 1rem;
+  }
+  .add-dashboard-form {
+    flex-direction: column;
+  }
+}
 </style>

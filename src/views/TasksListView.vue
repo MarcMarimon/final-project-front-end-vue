@@ -7,6 +7,7 @@ import { useDashboardsStore } from '@/stores/dashboardsStore.js'
 import TaskListColumn from '@/components/TaskListColumn.vue'
 import EditTask from '@/components/EditTask.vue'
 import ModalComp from '@/components/ModalComp.vue'
+import { TASK_STATUS_DIC } from '@/utils/enums.js'
 
 const router = useRouter()
 const tasksStore = useTasksStore()
@@ -20,23 +21,27 @@ const editTaskModal = ref(null)
 const tasks = ref([
   {
     id: 0,
-    title: 'Not Started',
+    title: TASK_STATUS_DIC.NOT_STARTED.text,
+    value: TASK_STATUS_DIC.NOT_STARTED.value,
     tasks: getNotStartedTasks
   },
   {
     id: 1,
-    title: 'In Progress',
+    title: TASK_STATUS_DIC.IN_PROGRES.text,
+    value: TASK_STATUS_DIC.IN_PROGRES.value,
     tasks: getInProgressTasks
   },
   {
     id: 2,
-    title: 'Completed',
+    title: TASK_STATUS_DIC.COMPLETED.text,
+    value: TASK_STATUS_DIC.COMPLETED.value,
     tasks: getCompletedTasks
   }
 ])
 const showEditDialog = ref(false)
 const selectedTaskId = ref(null)
 const editDialogTitle = ref('')
+const taskIdOnMove = ref('')
 
 const handleEditTask = (taskId) => {
   selectedTaskId.value = taskId
@@ -49,8 +54,18 @@ const handleEditModalClose = () => {
   selectedTaskId.value = null
   editDialogTitle.value = ''
 }
-const handleMoveTask = (event) => {
-  console.log('Task with ID:', event.taskId, 'moved to status:', event.targetStatus)
+const handleSaveTaskIdMoved = (taskId) => {
+  taskIdOnMove.value = taskId
+}
+const handleMoveTask = async (event) => {
+  const newTask = { status: event.targetStatus }
+  try {
+    await tasksStore.updateTaskById(taskIdOnMove.value, newTask)
+  } catch (error) {
+    console.error(error)
+  } finally {
+    taskIdOnMove.value = ''
+  }
 }
 const actualDashboard = computed(() => {
   return dashboards.value.find((dashboard) => dashboard.id === actualDashboardId.value)
@@ -84,9 +99,11 @@ onMounted(async () => {
         :key="taskColumn.id"
         :title="taskColumn.title"
         :tasks="taskColumn.tasks"
+        :columnId="taskColumn.value"
         @edit-task="handleEditTask"
         @remove-task="removeTask"
         @move-task="handleMoveTask"
+        @save-task-id-moved="handleSaveTaskIdMoved"
       />
     </section>
 

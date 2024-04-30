@@ -316,7 +316,7 @@
   text-align: center;
 }
 .feature-details h3 {
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 700;
   align-self: flex-start;
   margin-bottom: 30px;
@@ -413,7 +413,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  text-align: center;
+  text-align: left;
   margin-bottom: 2rem;
   padding: 20px 60px;
   background-color: rgb(255, 255, 255);
@@ -426,10 +426,10 @@
 
 .footer {
   text-align: center;
-  margin-top: 4rem;
   background-color: #242424;
   color: rgb(209, 209, 209);
   padding: 36px;
+  height: 250px;
 }
 
 .footer-content {
@@ -451,6 +451,9 @@
 .contact-info img {
   width: 70px;
   height: 50px;
+}
+.social-links {
+  margin-top: 50px;
 }
 .social-links ul {
   list-style: none;
@@ -499,6 +502,56 @@
   .hero-content p {
     font-size: 16px;
     max-width: unset;
+  }
+  .feature-cards-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .feature {
+    width: 100%;
+    max-width: unset;
+    padding: 20px;
+  }
+  .feature-icon {
+    font-size: 2rem;
+  }
+  .feature-details h3 {
+    font-size: 30px;
+  }
+  .testimonial-section-content {
+    flex-direction: column;
+  }
+  .testimonial-section h2 {
+    font-size: 30px;
+  }
+  .testimonial {
+    width: 100%;
+    max-width: unset;
+    padding: 20px;
+  }
+  .testimonial-avatar img {
+    width: 150px;
+    height: 150px;
+  }
+  .testimonial-details p {
+    font-size: 20px;
+  }
+  .testimonial-details label {
+    font-size: 16px;
+  }
+
+  .about-section h2 {
+    font-size: 30px;
+  }
+  .about-coments {
+    width: 100%;
+    height: 100%;
+    max-width: unset;
+    padding: 10px;
+    flex-direction: column;
+  }
+  .about-coments p {
+    font-size: 16px;
   }
 }
 </style>

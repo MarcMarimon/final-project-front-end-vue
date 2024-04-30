@@ -1,22 +1,15 @@
 <script setup>
-import { ref } from 'vue'
-
 const { tasks, title } = defineProps({
   tasks: { type: Array, required: true },
-  title: { type: String, required: true }
+  title: { type: String, required: true },
+  columnId: { type: String, required: true }
 })
-const myEmit = ref(null)
 
-const customEmit = (event, data) => {
-  if (myEmit.value) {
-    myEmit.value(event, data)
-  }
-}
-const draggedTask = ref(null)
+const $emit = defineEmits(['save-task-id-moved', 'move-task', 'remove-task', 'edit-task'])
 
 const handleDragStart = (event, taskId) => {
   event.dataTransfer.setData('TaskId', taskId.toString())
-  draggedTask.value = taskId
+  $emit('save-task-id-moved', taskId)
 }
 
 const hadleDragEnd = (event) => {
@@ -24,41 +17,33 @@ const hadleDragEnd = (event) => {
 }
 
 const handleDrop = (event) => {
-  console.log('handleDrop called')
   event.preventDefault()
   const targetStatus = event.target.closest('.task-list-column').getAttribute('data-status')
-  console.log('Target status:', targetStatus)
 
-  if (draggedTask.value) {
-    console.log('Dragged task exists')
-    const taskId = parseInt(draggedTask.value)
-    const updatedTask = tasks.value.find((task) => task.id === taskId)
-    if (updatedTask) {
-      console.log('Updating task status')
-      updatedTask.status = targetStatus
-      customEmit('move-task', { taskId, targetStatus })
-    } else {
-      console.log('Task not found')
-    }
-    draggedTask.value = null
+  if (targetStatus) {
+    $emit('move-task', { targetStatus })
   } else {
-    console.log('No dragged task')
+    $emit('save-task-id-moved', '')
   }
 }
 </script>
 
 <template>
-  <ul class="task-list-column" :data-status="title.toLowerCase()">
+  <ul
+    class="task-list-column"
+    :data-status="columnId"
+    @drop.prevent="handleDrop"
+    @dragend="hadleDragEnd"
+    @dragover.prevent
+  >
     <li class="column-title">{{ title }}</li>
+    <li class="task-item empty-li" v-show="tasks.length === 0"></li>
     <li
       v-for="task in tasks"
       :key="task.id"
       class="task-item"
       draggable="true"
       @dragstart="(event) => handleDragStart(event, task.id)"
-      @dragend="hadleDragEnd"
-      @dragover.prevent
-      @drop="handleDrop"
     >
       <div class="task-details">
         <span>{{ task.title }}</span>
