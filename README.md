@@ -1,10 +1,10 @@
-# Proyecto Final del Bootcamp de Desarrollo Frontend de Ironhack
+# Ironhack Frontend Development Bootcamp Final Project
 
-Este proyecto se ha realizado como proyecto final del bootcamp de desarrollo frontend de Ironhack. Consiste en una web app de Task Management.
+This project has been developed as the final assignment for the Ironhack frontend development bootcamp. It entails a web application focused on Task Management.
 
-## Instrucciones de Instalación
+## Installation Instructions
 
-Para poder trabajar en el proyecto, debes clonar este repositorio y seguir los pasos descritos a continuación:
+To work on this project, you need to clone this repository and follow the steps outlined below:
 
 ## Recommended IDE Setup
 
