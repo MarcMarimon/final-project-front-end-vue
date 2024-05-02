@@ -588,5 +588,34 @@
   .testimonial-details label {
     font-size: 16px;
   }
+  .footer {
+    height: 270px;
+  }
+}
+@media (max-width: 380px) {
+  .hero-content > h1 {
+    font-size: 36px;
+  }
+  .hero-image {
+    display: none;
+  }
+
+  .footer {
+    height: 300px;
+  }
+}
+@media (max-width: 330px) {
+  .feature {
+    height: 350px;
+  }
+  .feature-icon {
+    font-size: 1.5rem;
+  }
+  .feature-details > h3 {
+    font-size: 20px;
+  }
+  .footer {
+    height: 330px;
+  }
 }
 </style>
