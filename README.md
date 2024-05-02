@@ -2,6 +2,10 @@
 
 This project has been developed as the final assignment for the Ironhack frontend development bootcamp. It entails a web application focused on Task Management.
 
+## Live Demo
+
+To see this web app live, you can access it [here](https://main--taskinetor3000.netlify.app/).
+
 ## Installation Instructions
 
 To work on this project, you need to clone this repository and follow the steps outlined below:
