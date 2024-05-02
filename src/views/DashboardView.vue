@@ -113,7 +113,9 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin-top: 30px;
+
+  max-height: 600px;
+  overflow-y: auto;
 }
 
 .dashboard-card {

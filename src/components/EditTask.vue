@@ -84,18 +84,18 @@ onMounted(() => {
 
 .save-button {
   padding: 8px 16px;
-  background-color: #4caf50;
-  color: white;
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .save-button:hover {
-  background-color: #45a049;
+  background-color: #0056b3;
 }
 
 .save-button:active {
-  background-color: #3e8e41;
+  background-color: #003d7e;
 }
 </style>

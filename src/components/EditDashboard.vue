@@ -29,18 +29,20 @@ const cancelEdit = () => {
 </script>
 
 <template>
-  <div class="edit-dashboard-container">
-    <input
-      type="text"
-      v-model="editedName"
-      class="edit-input"
-      placeholder="Nuevo nombre del Dashboard"
-    />
-    <div class="button-container">
-      <button @click="saveDashboardName" class="save-button">Guardar</button>
-      <button @click="cancelEdit" class="cancel-button">Cancelar</button>
+  <form @submit.prevent="saveDashboardName">
+    <div class="edit-dashboard-container">
+      <input
+        type="text"
+        v-model="editedName"
+        class="edit-input"
+        placeholder="Nuevo nombre del Dashboard"
+      />
+      <div class="button-container">
+        <button type="submit" class="save-button">Guardar</button>
+        <button @click="cancelEdit" class="cancel-button">Cancelar</button>
+      </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <style scoped>
@@ -75,12 +77,12 @@ const cancelEdit = () => {
 }
 
 .save-button {
-  background-color: #4caf50;
+  background-color: #007bff;
   color: #fff;
 }
 
 .save-button:hover {
-  background-color: #45a049;
+  background-color: #0056b3;
 }
 
 .cancel-button {

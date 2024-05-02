@@ -141,6 +141,7 @@ onMounted(async () => {
   justify-content: center;
   align-items: center;
   margin-top: 80px;
+  overflow: hidden;
 }
 .task-list-title {
   font-size: 2rem;
@@ -153,6 +154,8 @@ onMounted(async () => {
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  max-height: 1300px;
+  overflow-y: auto;
 }
 
 .add-task-form {
@@ -184,9 +187,20 @@ onMounted(async () => {
 @media (max-width: 1024px) {
   .task-columns {
     flex-direction: column;
+    max-height: 500px;
   }
   .add-task-form {
     margin-top: 1rem;
+  }
+}
+@media (max-width: 1024px) {
+  .add-task-input {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .add-task-button {
+    width: 100%;
+    margin-left: 0;
   }
 }
 </style>
