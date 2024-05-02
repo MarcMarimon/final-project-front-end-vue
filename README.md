@@ -1,6 +1,10 @@
-# final-project-front-end-vue
+# Ironhack Frontend Development Bootcamp Final Project
 
-This template should help get you started developing with Vue 3 in Vite.
+This project has been developed as the final assignment for the Ironhack frontend development bootcamp. It entails a web application focused on Task Management.
+
+## Installation Instructions
+
+To work on this project, you need to clone this repository and follow the steps outlined below:
 
 ## Recommended IDE Setup
 
