@@ -9,7 +9,8 @@ export const useUserStore = defineStore('user', () => {
 
   // Getters
   const userName = computed(() => {
-    return user.value?.user_metadata.user_name
+    console.log(user.value)
+    return user.value?.user_metadata?.user_name || ''
   })
   // Actions
   async function fetchUser() {

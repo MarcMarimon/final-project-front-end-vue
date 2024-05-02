@@ -7,7 +7,7 @@ export const fetchActualUser = async () => {
 
 export const createNewUser = async (email, password, user_name) => {
 
-    const { data, error } = await supabase.auth.signUp(
+    const { data: { user }, error } = await supabase.auth.signUp(
         {
             email,
             password,
@@ -23,7 +23,7 @@ export const createNewUser = async (email, password, user_name) => {
         throw new Error(error.message)
     }
 
-    return data
+    return user
 }
 
 export const logIn = async (email, password) => {
