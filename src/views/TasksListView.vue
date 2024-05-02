@@ -135,14 +135,16 @@ onMounted(async () => {
 <style scoped>
 .task-list-view {
   padding: 2rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 80px;
 }
-
 .task-list-title {
   font-size: 2rem;
+  font-weight: 700;
   margin-bottom: 1.5rem;
   color: #242424;
 }
@@ -177,5 +179,14 @@ onMounted(async () => {
 
 .add-task-button:hover {
   background-color: #0056b3;
+}
+
+@media (max-width: 1024px) {
+  .task-columns {
+    flex-direction: column;
+  }
+  .add-task-form {
+    margin-top: 1rem;
+  }
 }
 </style>

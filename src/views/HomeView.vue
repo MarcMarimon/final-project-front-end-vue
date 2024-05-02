@@ -66,6 +66,7 @@
           <div class="feature-details">
             <h3>Productivity Insights</h3>
             <p>
+              <span class="coming-soon-line">"Coming Soon!"</span><br />
               Gain valuable insights into your productivity with built-in analytics and reports.
             </p>
           </div>
@@ -281,6 +282,11 @@
   align-self: flex-start;
   margin-bottom: 40px;
 }
+.coming-soon-line {
+  font-size: larger;
+  color: #303030;
+  font-weight: 700;
+}
 .feature-cards-container {
   display: flex;
   justify-content: space-around;
@@ -296,6 +302,7 @@
   flex-direction: column;
   height: 100%;
   max-width: 250px;
+  max-height: 394px;
   background-color: #ece9e9;
   border-radius: 8px;
   flex-grow: 1;
@@ -511,6 +518,8 @@
     width: 100%;
     max-width: unset;
     padding: 20px;
+    max-height: 215px;
+    height: 210px;
   }
   .feature-icon {
     font-size: 2rem;
@@ -551,6 +560,32 @@
     flex-direction: column;
   }
   .about-coments p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 435px) {
+  .feature-icon {
+    margin-bottom: 0;
+  }
+  .feature-details > h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .testimonial {
+    flex-direction: column;
+  }
+  .testimonial-stars {
+    font-size: 14px;
+  }
+  .testimonial-avatar img {
+    width: 100px;
+    height: 100px;
+  }
+  .testimonial-details p {
+    font-size: 18px;
+  }
+  .testimonial-details label {
     font-size: 16px;
   }
 }

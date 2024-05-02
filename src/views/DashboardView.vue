@@ -42,7 +42,7 @@ onMounted(() => {
 </script>
 <template>
   <div class="dashboard-container">
-    <h2>Dashboard</h2>
+    <h2 class="dashboard-container-title">Dashboard</h2>
     <div class="dashboard-wrapper">
       <div
         v-for="dashboard in dashboards"
@@ -96,11 +96,19 @@ onMounted(() => {
 <style scoped>
 .dashboard-container {
   padding: 2rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  margin-top: 80px;
 }
-
+.dashboard-container-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #242424;
+}
 .dashboard-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -182,6 +190,37 @@ onMounted(() => {
   }
   .add-dashboard-form {
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .add-dashboard-input {
+    width: 100%;
+  }
+  .add-dashboard-button {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+@media (max-width: 435px) {
+  .dashboard-wrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .dashboard-card {
+    margin-bottom: 1rem;
+  }
+  .add-dashboard-form {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .add-dashboard-input {
+    width: 100%;
+  }
+  .add-dashboard-button {
+    width: 100%;
+    margin-left: 0;
   }
 }
 </style>

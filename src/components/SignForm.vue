@@ -1,31 +1,3 @@
-<template>
-  <LayoutCard>
-    <h1>{{ SIGN_TYPES[signType].text }} please</h1>
-    <form @submit.prevent.stop="_handleClick">
-      <div class="labels">
-        <label v-if="signType === 'signUp'">
-          User Name: <input type="text" v-model="user" />
-          <span class="error-message">{{ userError }}</span>
-        </label>
-        <label>
-          Email: <input type="text" v-model="email" />
-          <span class="error-message">{{ emailError }}</span>
-        </label>
-        <label>
-          Password: <input type="password" v-model="password" />
-          <span class="error-message">{{ passwordError }}</span>
-        </label>
-        <label v-if="signType === 'signUp'">
-          Confirm Password: <input type="password" v-model="confirmPassword" />
-          <span class="error-message">{{ confirmPasswordError }}</span>
-        </label>
-        <span class="error-message">{{ generalError }}</span>
-      </div>
-      <button type="submit">{{ SIGN_TYPES[signType].text }}</button>
-    </form>
-  </LayoutCard>
-</template>
-
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
@@ -83,7 +55,7 @@ const _handleClick = async () => {
   if (!password.value) {
     passwordError.value = 'Please enter a password.'
     hasErrors = true
-  } else if (!validatePassword(password.value)) {
+  } else if (!validatePassword(password.value) && props.signType == 'signUp') {
     passwordError.value =
       'Password must contain at least 10 characters, one uppercase letter, one number, and one special character.'
     hasErrors = true
@@ -114,6 +86,33 @@ const _handleClick = async () => {
   }
 }
 </script>
+<template>
+  <LayoutCard>
+    <h1>{{ SIGN_TYPES[signType].text }} please</h1>
+    <form @submit.prevent.stop="_handleClick">
+      <div class="labels">
+        <label v-if="signType === 'signUp'">
+          User Name: <input type="text" v-model="user" />
+          <span class="error-message">{{ userError }}</span>
+        </label>
+        <label>
+          Email: <input type="text" v-model="email" />
+          <span class="error-message">{{ emailError }}</span>
+        </label>
+        <label>
+          Password: <input type="password" v-model="password" />
+          <span class="error-message">{{ passwordError }}</span>
+        </label>
+        <label v-if="signType === 'signUp'">
+          Confirm Password: <input type="password" v-model="confirmPassword" />
+          <span class="error-message">{{ confirmPasswordError }}</span>
+        </label>
+        <span class="error-message">{{ generalError }}</span>
+      </div>
+      <button type="submit">{{ SIGN_TYPES[signType].text }}</button>
+    </form>
+  </LayoutCard>
+</template>
 
 <style scoped>
 .labels {

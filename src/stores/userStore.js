@@ -24,20 +24,16 @@ export const useUserStore = defineStore('user', () => {
   }
 
   async function signUp(email, password, userName) {
-    try {
-      user.value = await createNewUser(email, password, userName)
 
-    } catch (error) {
-      console.error(error)
-    }
+    user.value = await createNewUser(email, password, userName)
+
+
   }
 
   async function signIn(email, password) {
-    try {
-      user.value = await logIn(email, password)
-    } catch (error) {
-      console.error(error)
-    }
+
+    user.value = await logIn(email, password)
+
   }
   async function signOut() {
     try {
