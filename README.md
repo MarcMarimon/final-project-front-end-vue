@@ -4,7 +4,7 @@ This project has been developed as the final assignment for the Ironhack fronten
 
 ## Live Demo
 
-To see this web app live, you can access it [here](https://main--taskinetor3000.netlify.app/).
+To see this web app live, you can access it [here](https://main--taskinator3000.netlify.app/).
 
 ## Installation Instructions
 
